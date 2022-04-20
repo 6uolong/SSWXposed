@@ -12,7 +12,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class Crack implements IXposedHookLoadPackage {
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        if (lpparam.packageName.equals("com.qq.ssw1")) {
+        if (lpparam.packageName.equals("com.qq.ssw2")) {
             ClassLoader classLoader = lpparam.classLoader;
             XposedBridge.log("Loaded app: " + lpparam.packageName);
             Class clazz = XposedHelpers.findClass("com.qq.ssw.v2.splash.SplashActivityV2", lpparam.classLoader);
@@ -26,13 +26,13 @@ public class Crack implements IXposedHookLoadPackage {
                     activity.startActivity(mIntent);
                 }
             }); // 去开屏广告和不必要权限要求
-            XposedHelpers.findAndHookMethod("tencent.io.b", classLoader, "i", new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("tencent.zo.b", classLoader, "i", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     super.afterHookedMethod(param);
                     param.setResult(true);
                 }
-            }); //破解会员
+            });//破解会员
         }
     }
 }
